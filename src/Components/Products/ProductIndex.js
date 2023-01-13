@@ -4,13 +4,13 @@ import Select from '../Home/Main/Select';
 import Products from './Products';
 
 
-const ProductIndex = () => {
+const ProductIndex = (props) => {
   return (
     <section className="product">
       <div className="container">
         <h1 className="text-linear">Products</h1>
         <Select></Select>
-        <Products></Products>
+        <Products onclick={props.onclick}></Products>
         <div className="view-product"></div>
       </div>
     </section>

@@ -1,33 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
+import CartBody from "./CartBody";
 
-const CartPage = () => {
-  const [openCart, setOpenCart] = useState(false);
-  const openref = useRef(null)
+const CartPage = (props) => {
+  console.log(props);
+  const closeref = useRef(null);
   useEffect(() => {
-    function handleClickOutOpen(e) {
-      if (openref && !openref.current.contains(e.target)) {
-        // console.log("click outside");
-        setOpenCart(!openCart);
-      }
-    }
-    document.addEventListener("click", handleClickOutOpen);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutOpen);
-    };
+    // function handleClickOutclose(e) {
+    //   if (closeref && !closeref.current.contains(e.target)) {
+    //     console.log("click outside");
+    //     // setCloseCart(!closeCart);
+    //   }
+    // }
+    // document.addEventListener("click", handleClickOutclose);
+    // return () => {
+    //   document.removeEventListener("click", handleClickOutclose);
+    // };
   }, []);
   return (
     <div>
-      <section
-        className={openCart ? "cartPage" : "cartPage active"}
-        ref={openref}
-      >
+      <section className={props.open ? "cartPage active" : "cartPage"}>
         <div className="cartPage__content">
           <div className="cartPage__header">
             <h3>Giỏ hàng</h3>
             <i
               className="fas fa-x cartPage__close"
-              onClick={() => setOpenCart(!openCart)}
+              onClick={() => props.handle()}
             ></i>
           </div>
           <div className="cartPage__body">
@@ -51,7 +48,11 @@ const CartPage = () => {
                     <th style={{ width: "15%" }}>Thao tác</th>
                   </tr>
                 </thead>
-                <tbody className="cart-body"></tbody>
+                <tbody className="cart-body">
+                  {props.addCart.map(item=>(
+                  <CartBody key={item.id} image={item.img} name={item.name} price={item.price}></CartBody>
+                  ))}
+                </tbody>
               </table>
             </div>
             <div className="cartPage__total">
@@ -67,7 +68,10 @@ const CartPage = () => {
         </div>
       </section>
       <div
-        className={openCart ? "cartPage__overlay" : "cartPage__overlay active"}
+        className={
+          props.open ? "cartPage__overlay active" : "cartPage__overlay"
+        }
+        ref={closeref}
       ></div>
     </div>
   );

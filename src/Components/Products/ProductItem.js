@@ -1,9 +1,9 @@
 import React, { Children } from 'react';
 
- let convert = new Intl.NumberFormat("it-IT", {
-   style: "currency",
-   currency: "VND",
- });
+export const convert = new Intl.NumberFormat("it-IT", {
+  style: "currency",
+  currency: "VND",
+});
 
 const ProductItem = (
  props

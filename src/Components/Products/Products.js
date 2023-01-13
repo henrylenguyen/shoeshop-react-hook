@@ -3,11 +3,11 @@ import React, { memo, useEffect, useReducer } from "react";
 import { initialState, reducer } from "../Reducer";
 import { GetDataFromAPI } from "../GetAPI.js";
 import ProductItem from "./ProductItem";
-import { renderProduct } from "../Actions";
+import { renderProduct, addToCard } from "../Actions";
 
-const Products = () => { 
+const Products = (props) => { 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { productList } = state;
+  const { productList, CartList } = state;
   const handleRenderProduct = async () => {
     let data = await GetDataFromAPI();
     dispatch(renderProduct(data));
@@ -16,11 +16,8 @@ const Products = () => {
     handleRenderProduct();
     return () => {};
   }, []);
-  
-  const handleAddCart = (id) => {
-    // dispatch()
-    console.log(id)
-  }; 
+  // console.log(CartList);
+  props.onclick(CartList);
 
   return (
     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 product__list">
@@ -31,7 +28,7 @@ const Products = () => {
           name={item.name}
           category={item.category}
           price={item.price}
-          onClick={() => handleAddCart(item)}
+          onClick={() => dispatch(addToCard(item))}
         ></ProductItem>
       ))}
     </div>
