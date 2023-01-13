@@ -2,14 +2,16 @@
 
 ## Có chức năng:
 - Lấy dữ liệu từ API thông qua useEffect
-- Sử dụng useReducer để thêm các sản phẩm vào giỏ hàng
+- Sử dụng useReducer để thêm các sản phẩm vào giỏ hàng (Chưa có thông báo cho người dùng)
 - Truyền dữ liệu giữa các component thông qua các props
 - Sử dụng useState và props để đóng mở giỏ hàng
+- 
 ## Các chức năng khác:
 - Xóa giỏ hàng
 - Xóa sản phẩm
 - Tăng, giảm số lượng
 - Sắp xếp
 - Tìm kiếm
+- Thông báo thêm, xóa sản phẩm trong giỏ hàng
 => Tất cả sẽ được phát triển thông qua redux
 ### Đồ án chỉ được làm để hiểu mô hình hoạt động của hook và props
