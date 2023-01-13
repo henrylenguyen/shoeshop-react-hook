@@ -1,10 +1,9 @@
-import { RENDER_PRODUCT,ADD_CART } from "./Constaint";
+import { RENDER_PRODUCT,ADD_CART,DELETE_CART } from "./Constaint";
 
 // Khởi tạo biến
 export const initialState = {
   productList: [],
   CartList: [],
-  OpenCart: false
 };
 
 // Tạo reducer
@@ -20,11 +19,13 @@ export const reducer = (state, action) => {
         ...state,
         CartList: [...state.CartList, action.payload],
       };
-    // case OPEN_CART:
-    //   return {
-    //     ...state,
-    //     OpenCart: false
-    //   };
+    case DELETE_CART:
+      const newCart = [...state.CartList];
+      newCart.splice(action.payload, 1);
+      return {
+        ...state,
+        CartList: newCart,
+      };
     default:
       throw new Error("Lỗi");
   }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { convert } from '../Products/ProductItem';
+import React from "react";
+import { convert } from "../Products/ProductItem";
 
-const CartBody = ({name,image,price}) => {
+const CartBody = ({ name, image, price,deleteCart }) => {
   return (
     <tr className="main-cart">
       <td>
@@ -32,10 +32,13 @@ const CartBody = ({name,image,price}) => {
         </div>
       </td>
       <td>
-        <span className="totalProduct">10</span>
+        <span className="totalProduct">{convert.format(price)}</span>
       </td>
       <td>
-        <i className="fa-solid fa-trash text-danger cart__delete"></i>
+        <i
+          className="fa-solid fa-trash text-danger cart__delete"
+          onClick={deleteCart}
+        ></i>
       </td>
     </tr>
   );

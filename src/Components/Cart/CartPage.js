@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CartBody from "./CartBody";
 
 const CartPage = (props) => {
-  console.log(props);
+  // console.log(props);
   const closeref = useRef(null);
   useEffect(() => {
     // function handleClickOutclose(e) {
@@ -49,23 +49,22 @@ const CartPage = (props) => {
                   </tr>
                 </thead>
                 <tbody className="cart-body">
-                  {props.addCart.map(item=>(
-                  <CartBody key={item.id} image={item.img} name={item.name} price={item.price}></CartBody>
+                  {props.addCart.map((item, index) => (
+                    <CartBody
+                      key={item.id}
+                      image={item.img}
+                      name={item.name}
+                      price={item.price}
+                      deleteCart={()=>props.deleteCart(index)}
+                    ></CartBody>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="cartPage__total">
-              <p className="total">
-                Tổng tiền: <span id="totalProduct">1.000.000đ</span>
-              </p>
-            </div>
+           
           </div>
         </div>
-        <div className="cartPage__footer">
-          <button className="btn btn-danger btn-deleteCheck">Xóa</button>
-          <button className="btn btn-success btn-paidCart">Thanh toán</button>
-        </div>
+       
       </section>
       <div
         className={
