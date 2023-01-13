@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Carousel = () => {
+  
   return (
     <section
       className="carousel"
       style={{
-        background: "url(/bg1.png)",
+        background: "url(/bg.png)",
         backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundSize: "120%",
       }}
     >
       <div className="container carousel__content">

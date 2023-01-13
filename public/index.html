@@ -47,6 +47,61 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="theme"><i class="fas fa-sun theme-icon"></i></div>
     <div id="root"></div>
+    <script>
+      function getLocalStorage(value) {
+        let local = localStorage.getItem(value);
+        if (!local) return [];
+        return JSON.parse(local);
+      }
+      let template = `<a href="#" class="scroll">
+      <i class="fas fa-hand-pointer"></i>
+    </a>`;
+      document.body.insertAdjacentHTML("afterbegin", template);
+      window.addEventListener("scroll", () => {
+        let scroll = window.scrollY > 500;
+        let scollDom = document.querySelector(".scroll");
+        if (scroll) {
+          scollDom.classList.add("active");
+        } else {
+          scollDom.classList.remove("active");
+        }
+      });
+      let theme = document.querySelector(".theme");
+      let themeIcon = document.querySelector(".theme-icon");
+      let body = document.body;
+      let carousel = document.querySelector(".carousel");
+      let MODE;
+      theme.addEventListener("click", () => {
+        // let sun = themeIcon.classList.toggle("fa-sun");
+        let setTheme = body.classList.toggle("dark-mode");
+        // themeIcon.classList.toggle("fa-moon")
+        if (body.classList.contains("dark-mode")) {
+          themeIcon.classList.add("fa-sun");
+          themeIcon.classList.remove("fa-moon");
+          // carousel.style.background =
+          //   "url(/bg.png) center center / cover";
+          MODE = "DARK";
+        } else {
+          themeIcon.classList.remove("fa-sun");
+          themeIcon.classList.add("fa-moon");
+          // document.querySelector(".carousel").style.background =
+          //   "url(/bg1.png) center center / cover)";
+          MODE = "LIGHT";
+        }
+        localStorage.setItem("mode", JSON.stringify(MODE));
+      });
+      let getTheme = getLocalStorage("mode");
+      if (getTheme === "DARK") {
+        body.classList.add("dark-mode");
+        themeIcon.classList.add("fa-sun");
+        themeIcon.classList.remove("fa-moon");
+      } else {
+        body.classList.remove("dark-mode");
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+      }
+    </script>
   </body>
 </html>
